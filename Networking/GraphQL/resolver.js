@@ -14,6 +14,12 @@ const books = [
     author: 'Paul Auster',
     PublishedYear: 1985,
   },
+  {
+    id:3,
+    title: 'The Metamorphosis',
+    author: "Kate Chopin",
+    PublishedYear: 1915,    
+  }
 ];
 
 const authors = [
@@ -29,8 +35,27 @@ const authors = [
 
 
 export const resolvers = {
+  Book:{
+    author:(parent ,args ,context,info)=>{
+      return authors.find(author => author.name === parent.author);
+
+    }
+  },
+  Author:{
+    books: (parent, args, context, info) => {
+      return books.filter(book => book.author === parent.name);
+    }
+  },
   Query: {
     books: () => books,
     authors: () => authors,
   },
+  Mutation:{
+    addBook:()=>{
+
+      const newRecord={...args, id : books.length + 1};
+      books.push(newRecord);
+      return newRecord
+    }
+  }
 };

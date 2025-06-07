@@ -33,7 +33,7 @@ books: [Book]
 type Book {
   id: ID!
   title: String!
-  author: String!
+  author: Author
   PublishedYear: Int
 }
 
@@ -46,7 +46,14 @@ type Query {
 
 
 
+
 #to update the schema, we use Mutation like POST in REST API
+
+type Mutation {
+addBook (title: String!, author: String!, PublishedYear: Int!): Book!
+updateBook(id: ID!, title: String, author: String, PublishedYear: Int): Book
+deleteBook(id: ID!): Book
+}
 
 
 `;
