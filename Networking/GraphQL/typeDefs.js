@@ -25,7 +25,7 @@ export const typeDefs=`#graphql
 type Author {
 id : ID!
 name : String!
-books: [Book]
+books: [Book]   # books as an array of Book type, so we can fetch all books written by an author
 
 
 }
@@ -33,7 +33,7 @@ books: [Book]
 type Book {
   id: ID!
   title: String!
-  author: Author
+  author: Author # author as an object of Author type, so we can fetch author details
   PublishedYear: Int
 }
 
